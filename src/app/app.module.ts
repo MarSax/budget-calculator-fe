@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BudgetEditComponent } from './budget/budget-edit/budget-edit.component';
+import { BudgetListComponent } from './budget/budget-list/budget-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    BudgetEditComponent,
+    BudgetListComponent
   ],
   imports: [
     BrowserModule,
