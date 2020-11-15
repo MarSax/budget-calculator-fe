@@ -1,1 +1,11 @@
-<p>budget-edit works!</p>
+<form class="form-inline container" [formGroup]="formGroup">
+  <div class="form-group mb-2">
+    <label for="amount" class="item">Amount</label>
+    <input type="number" class="form-control" id="amount" formControlName="amount">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="description" class="item">Description</label>
+    <input type="text" class="form-control" id="description" formControlName="description">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2" [disabled]="formGroup.invalid" (click)="submit()">Save</button>
+</form>

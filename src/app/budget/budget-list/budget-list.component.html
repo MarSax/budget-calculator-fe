@@ -1,1 +1,21 @@
-<p>budget-list works!</p>
+<div class="list-container">
+
+  <div class="item">
+    <h3 id="income">INCOME</h3>
+    <ng-container>
+      <div *ngFor="let incomeBudget of incomeBudgetList">
+        <app-budget-detail [incomeBudget]="incomeBudget"></app-budget-detail>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="item">
+    <h3 id="expenses">EXPENSES</h3>
+    <ng-container>
+      <div *ngFor="let expenseBudget of expensesBudgetList">
+        <app-budget-detail [expenseBudget]="expenseBudget"></app-budget-detail>
+      </div>
+    </ng-container>
+  </div>
+
+</div>

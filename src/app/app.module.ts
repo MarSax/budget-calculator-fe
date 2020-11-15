@@ -1,24 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { BudgetEditComponent } from './budget/budget-edit/budget-edit.component';
-import { BudgetListComponent } from './budget/budget-list/budget-list.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {BudgetModule} from './budget/budget.module';
+import {BudgetRoutingModule} from './budget/budget-routing.module';
+import {BudgetService} from './budget/budget.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModal, NgbModalConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    BudgetEditComponent,
-    BudgetListComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BudgetModule,
+    BudgetRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [
+    BudgetService,
+    NgbModalConfig,
+    NgbModal
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
