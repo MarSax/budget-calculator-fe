@@ -16,6 +16,18 @@ export class BudgetTotalComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAll();
+    this.budgetService.data.subscribe((budget: Budget) => {
+      if (budget.amount) {
+        this.budgetList.push(budget);
+      }
+      this.totalAmount = this.getTotalAmount();
+    });
+    this.budgetService.deleteS.subscribe((id: number) => {
+      if (id !== 0) {
+        this.budgetList = this.budgetList.filter(budget => budget.id !== id);
+        this.totalAmount = this.getTotalAmount();
+      }
+    });
   }
 
   private getTotalAmount(): number {

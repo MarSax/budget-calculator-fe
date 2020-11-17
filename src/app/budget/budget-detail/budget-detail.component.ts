@@ -24,5 +24,6 @@ export class BudgetDetailComponent implements OnInit {
 
   public delete(id: number): void {
     this.budgetService.delete(id).subscribe();
+    this.budgetService.propagateDeleteData(id);
   }
 }
