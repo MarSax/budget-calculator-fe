@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Budget} from '../budget';
 import {BudgetService} from '../budget.service';
+import cloneDeep from 'lodash';
 
 @Component({
   selector: 'app-budget-list',
@@ -18,7 +19,23 @@ export class BudgetListComponent implements OnInit {
     this.findAll();
     this.budgetService.data.subscribe((budget: Budget) => {
       if (budget.amount) {
-        budget.amount < 0 ? this.expensesBudgetList.push(budget) : this.incomeBudgetList.push(budget);
+        if (this.expensesBudgetList.includes(budget)) {
+          this.expensesBudgetList.forEach(b => {
+            if (b.id === budget.id) {
+              b.amount = budget.amount;
+              b.description = budget.description;
+            }
+          });
+        } else if (this.incomeBudgetList.includes(budget)) {
+          this.incomeBudgetList.forEach(b => {
+            if (b.id === budget.id) {
+              b.amount = budget.amount;
+              b.description = budget.description;
+            }
+          });
+        } else {
+          budget.amount < 0 ? this.expensesBudgetList.push(budget) : this.incomeBudgetList.push(budget);
+        }
       }
     });
     this.budgetService.deleteS.subscribe((id: number) => {
