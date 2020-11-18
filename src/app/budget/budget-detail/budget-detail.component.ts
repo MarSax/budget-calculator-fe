@@ -10,8 +10,7 @@ import {BudgetService} from '../budget.service';
 })
 export class BudgetDetailComponent implements OnInit {
 
-  @Input() incomeBudget: Budget;
-  @Input() expenseBudget: Budget;
+  @Input() budget: Budget;
 
   constructor(private modalService: NgbModal, private budgetService: BudgetService) { }
 
