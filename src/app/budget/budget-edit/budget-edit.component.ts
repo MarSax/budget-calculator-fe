@@ -35,10 +35,10 @@ export class BudgetEditComponent implements OnInit {
 
   public submit(): void {
     if (this.inputBudget) {
-      this.budgetService.updateDataAfterStoreIt(this.inputBudget);
       const id = this.inputBudget.id;
       this.inputBudget = this.formGroup.value;
       this.inputBudget.id = id;
+      this.budgetService.updateDataAfterStoreIt(this.inputBudget);
       this.budgetService.update(this.inputBudget).subscribe((budget: Budget) => {
         this.inputBudget = budget;
       });

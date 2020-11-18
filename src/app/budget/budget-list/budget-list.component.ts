@@ -19,20 +19,10 @@ export class BudgetListComponent implements OnInit {
     this.findAll();
     this.budgetService.data.subscribe((budget: Budget) => {
       if (budget.amount) {
-        if (this.expensesBudgetList.includes(budget)) {
-          this.expensesBudgetList.forEach(b => {
-            if (b.id === budget.id) {
-              b.amount = budget.amount;
-              b.description = budget.description;
-            }
-          });
-        } else if (this.incomeBudgetList.includes(budget)) {
-          this.incomeBudgetList.forEach(b => {
-            if (b.id === budget.id) {
-              b.amount = budget.amount;
-              b.description = budget.description;
-            }
-          });
+        if (this.expensesBudgetList.map(bud => bud.id).indexOf(budget.id) !== -1) {
+          BudgetListComponent.updateBudgetElement(this.expensesBudgetList, budget);
+        } else if (this.incomeBudgetList.map(bud => bud.id).indexOf(budget.id) !== -1) {
+          BudgetListComponent.updateBudgetElement(this.incomeBudgetList, budget);
         } else {
           budget.amount < 0 ? this.expensesBudgetList.push(budget) : this.incomeBudgetList.push(budget);
         }
@@ -48,6 +38,15 @@ export class BudgetListComponent implements OnInit {
         } else {
           this.incomeBudgetList = this.incomeBudgetList.filter(budget => budget.id !== id);
         }
+      }
+    });
+  }
+
+  private static updateBudgetElement(budgetList: Array<Budget>, budget: Budget): void {
+    budgetList.forEach((elem) => {
+      if (elem.id === budget.id) {
+        elem.description = budget.description;
+        elem.amount = budget.amount;
       }
     });
   }
